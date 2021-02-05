@@ -19,8 +19,8 @@ const userSchema = mongoose.Schema({
         maxlength: 50
     },
     role: {
-        type: Number,
-        default: 0 // 일반 회원 기본값
+        type: Number, // 1: 관리자
+        default: 0 // 0: 기본값, 일반회원
     },
     image: String,
     token: { // 유효성 관리
