@@ -19,8 +19,8 @@ const mongoose = require('mongoose')
 // 몽구스DB 연결 및 깃허브에 업로드 시 제외.
 mongoose.connect(config.mongoURI, {
 
-    // 몽고DB 기본 환경설정(안하면 에러뜸).
-    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
+  // 몽고DB 기본 환경설정(안하면 에러뜸).
+  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('mongoDB Connected...'))
   .catch(err => console.log(err))
 
@@ -37,5 +37,34 @@ app.post('/register', (req, res) => {
       return res.status(200).json({ success: true})
     })
   })
+
+app.post('./login', (req, res) => {
+
+  // 요청된 이메일 주소를 DB에서 검색.
+  User.findOne({ email: req.body.email }, (err, userInfo) => {
+    if(!userInfo) {
+      return res.json({
+        loginSuccess: false,
+        message: "존재하지 않는 이메일입니다."
+      })
+    }
+  })
+
+  // 요청된 이메일이 DB에 있다면 -> 비밀번호도 동일한지 확인.
+  user.comparePassword(req.body.password, (err, isMatch) => {
+    if(!isMatch)
+      return res.json({ loginSuccess: false, message: "비밀번호가 다릅니다."
+
+      // 비밀번호가 일치하면 토큰 생성.
+      user.generateToken((err, user) => {
+        
+      })
+    })
+  })
+
+  // 비밀번호가 동일하면 토큰 생성.
+
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
