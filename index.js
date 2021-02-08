@@ -39,11 +39,11 @@ app.post('/api/users/register', (req, res) => {
 
 app.post('/api/users/login', (req, res) => {
 
-  console.log('ping')
+  // console.log('ping')
   // 요청된 이메일 주소를 DB에서 검색.
   User.findOne({ email: req.body.email }, (err, user) => {
 
-    console.log('user', user)
+    // console.log('user', user)
     if(!user) {
       return res.json({
         loginSuccess: false,
