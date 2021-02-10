@@ -1,6 +1,6 @@
 const express = require('express') // express 모듈을 가져옴.
 const app = express() // 새로운 express 앱을 만듦.
-const port = 5000 // 포트 번호.
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key'); // 몽고DB key값 바인딩.
@@ -103,5 +103,7 @@ app.get('/api/users/logout', auth, (req, res) => {
       })
     })
 })
+
+const port = 5000 // 포트 번호.
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
