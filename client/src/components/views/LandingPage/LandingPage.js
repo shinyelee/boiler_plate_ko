@@ -26,7 +26,7 @@ function LandingPage(props) {
             <h2>시작 페이지</h2>
 
             <button onClick={onClickHandler}>
-                logout
+                Logout
             </button>
         </div>
     )
